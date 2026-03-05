@@ -448,11 +448,11 @@ def save_to_csv(jobs: List[Dict], output_dir: str) -> str:
 
 def main():
 
-    username = os.getenv("LINKEDIN_USERNAME")
-    password = os.getenv("LINKEDIN_PASSWORD")
-    keyword = os.getenv("JOB_KEYWORD", "Data Analyst")
+    username = os.getenv("LINKEDIN_USERNAME",'sunilchandralanke@gmail.com')
+    password = os.getenv("LINKEDIN_PASSWORD",'Momndad&456530')
+    keyword = os.getenv("JOB_KEYWORD", "Azure Databricks")
     output_dir = os.getenv("OUTPUT_DIR", r"C:\Users\linus\Downloads\LinkedIN")
-    WEB_APP_URL = os.getenv("WEB_APP_URL")
+    WEB_APP_URL = os.getenv("WEB_APP_URL",'https://script.google.com/macros/s/AKfycbw_G1iVzFqdGNcaeTIg59uPhUPerf5m0bawyBmjEW51mymYoP1V6LNfCLNFRy6L5qQhXA/exec')
     if not username or not password:
         raise ValueError("Missing LinkedIn credentials in environment variables.")
 
