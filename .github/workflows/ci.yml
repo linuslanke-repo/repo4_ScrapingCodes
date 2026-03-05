@@ -9,9 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-        FRAUD_COMPANIES_LIST: ${{ secrets.FRAUD_COMPANIES_LIST}}
-        SKIP_ROLE_NAMES: ${{ secrets.SKIP_ROLES}}
 
     steps:
     - uses: actions/checkout@v3
