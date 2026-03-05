@@ -28,7 +28,7 @@ def test_should_skip_role():
 
 def test_is_fraud_company():
     assert is_fraud_company("Infosys") is True
-    assert is_fraud_company("Random Startup") is False
+    assert is_fraud_company("GlobalData") is False
 
 
 def test_match_keywords():
