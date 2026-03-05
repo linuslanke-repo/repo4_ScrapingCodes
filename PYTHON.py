@@ -79,15 +79,15 @@ def should_skip_role(title: str) -> bool:
     if not title:
         return True
 
-    return any(role.lower() in title.lower() for role in SKIP_ROLE_NAMES)
+    return any(role.strip().lower() in title.strip().lower() for role in SKIP_ROLE_NAMES)
 
 
 def is_fraud_company(company: str) -> bool:
     if not company:
         return True
 
-    fraud_list = [c.lower() for c in FRAUD_COMPANIES_LIST]
-    return company.lower() in fraud_list
+    fraud_list = [c.lower().strip() for c in FRAUD_COMPANIES_LIST]
+    return company.lower().strip() in fraud_list
 
 
 def match_keywords(title: str, description: str, company: str) -> str:
