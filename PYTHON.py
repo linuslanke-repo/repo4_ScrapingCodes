@@ -28,6 +28,12 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 KEYWORDS = ["Entry Level", "Intern", "Internship", "0-1", "0-2", "0-3"]
 
+# FRAUD_COMPANIES = os.getenv("FRAUD_COMPANIES_LIST","")
+# FRAUD_COMPANIES_LIST=[c for c in FRAUD_COMPANIES.split(",") if c]
+#
+# SKIP_ROLE = os.getenv("SKIP_ROLES","")
+# SKIP_ROLE_NAMES=[c for c in SKIP_ROLE.split(",") if c]
+#-------------------------------------------------------------------------------------------------
 FRAUD_COMPANIES_LIST = ["Turing", "Wipro", "Infosys", "Tech Mahindra", "CGI", "Tekwissen India", "Enerzcloud Solutions",
                         "The Skillians" "GE Healthcare", "IBM", "Larsen & Toubro", "Innovate Solutions", "Lead India",
                         "WeBoost Solutions by UM", "UM IT Solutions", "UNIKWORKS", "Infosys", "Accenture",
@@ -40,7 +46,6 @@ FRAUD_COMPANIES_LIST = ["Turing", "Wipro", "Infosys", "Tech Mahindra", "CGI", "T
                         "Nexpro247", "O A Compserve", "Rakesh Kumar", "MNC Group", "Accenture in India",
                         "Divya Placement Consultants", "EY", "TECHPLEMENT", "The BigCjobs.com", "Workassist",
                         "Refonte Learning", "Skill Secure AI", "Traders Training Academy"]
-
 SKIP_ROLE_NAMES = ["Azure", "Business Development", "SALES", "Campus Ambassador", "Data Analytics", "Data Engineer",
                    "Data Scientist", "Devops", "Data Analyst", "Digital Marketing", "Operations", "Embedded Engineer",
                    "Flutter", "Human Resources", "iOS Developer", "WordPress", "Sales Executive", "Sales Intern", "SEO",
@@ -49,6 +54,8 @@ SKIP_ROLE_NAMES = ["Azure", "Business Development", "SALES", "Campus Ambassador"
                    "L1 Support", "L3 Support", "Apprentice", "Marketing Intern", "Marketing", "React Native",
                    "Graphic Design", "Graphic Designer", "Placement Coordinator", "Blockchain", "Project Engineer",
                    "Product Analyst", "Mechanical", "AWS", "Service Engineer", "Site Engineer"]
+#-----------------------------------------------------------------------------------
+
 
 DEFAULT_MAX_PAGES = 10
 WEB_APP_URL="https://script.google.com/macros/s/AKfycbw_G1iVzFqdGNcaeTIg59uPhUPerf5m0bawyBmjEW51mymYoP1V6LNfCLNFRy6L5qQhXA/exec"
@@ -96,15 +103,15 @@ def should_skip_role(title: str) -> bool:
     if not title:
         return True
 
-    return any(role.lower() in title.lower() for role in SKIP_ROLE_NAMES)
+    return any(role.strip().lower() in title.strip().lower() for role in SKIP_ROLE_NAMES)
 
 
 def is_fraud_company(company: str) -> bool:
     if not company:
         return True
 
-    fraud_list = [c.lower() for c in FRAUD_COMPANIES_LIST]
-    return company.lower() in fraud_list
+    fraud_list = [c.lower().strip() for c in FRAUD_COMPANIES_LIST]
+    return company.lower().strip() in fraud_list
 
 
 def match_keywords(title: str, description: str, company: str) -> str:
@@ -441,11 +448,11 @@ def save_to_csv(jobs: List[Dict], output_dir: str) -> str:
 
 def main():
 
-    username = os.getenv("LINKEDIN_USERNAME")
-    password = os.getenv("LINKEDIN_PASSWORD")
-    keyword = os.getenv("JOB_KEYWORD", "Data Analyst")
+    username = os.getenv("LINKEDIN_USERNAME",'sunilchandralanke@gmail.com')
+    password = os.getenv("LINKEDIN_PASSWORD",'Momndad&456530')
+    keyword = os.getenv("JOB_KEYWORD", "Azure Databricks")
     output_dir = os.getenv("OUTPUT_DIR", r"C:\Users\linus\Downloads\LinkedIN")
-
+    WEB_APP_URL = os.getenv("WEB_APP_URL",'https://script.google.com/macros/s/AKfycbw_G1iVzFqdGNcaeTIg59uPhUPerf5m0bawyBmjEW51mymYoP1V6LNfCLNFRy6L5qQhXA/exec')
     if not username or not password:
         raise ValueError("Missing LinkedIn credentials in environment variables.")
 
