@@ -28,10 +28,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 KEYWORDS = ["Entry Level", "Intern", "Internship", "0-1", "0-2", "0-3"]
 
-FRAUD_COMPANIES = os.getenv("FRAUD_COMPANIES_LIST","").split(",")
+FRAUD_COMPANIES = os.getenv("FRAUD_COMPANIES_LIST","")
 FRAUD_COMPANIES_LIST=[c for c in FRAUD_COMPANIES.split(",") if c]
 
-SKIP_ROLE = os.getenv("SKIP_ROLES","").split(",")
+SKIP_ROLE = os.getenv("SKIP_ROLES","")
 SKIP_ROLE_NAMES=[c for c in SKIP_ROLE.split(",") if c]
 DEFAULT_MAX_PAGES = 10
 WEB_APP_URL="https://script.google.com/macros/s/AKfycbw_G1iVzFqdGNcaeTIg59uPhUPerf5m0bawyBmjEW51mymYoP1V6LNfCLNFRy6L5qQhXA/exec"
