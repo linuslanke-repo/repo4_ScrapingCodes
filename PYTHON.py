@@ -28,27 +28,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 KEYWORDS = ["Entry Level", "Intern", "Internship", "0-1", "0-2", "0-3"]
 
-FRAUD_COMPANIES_LIST = ["Turing", "Wipro", "Infosys", "Tech Mahindra", "CGI", "Tekwissen India", "Enerzcloud Solutions",
-                        "The Skillians" "GE Healthcare", "IBM", "Larsen & Toubro", "Innovate Solutions", "Lead India",
-                        "WeBoost Solutions by UM", "UM IT Solutions", "UNIKWORKS", "Infosys", "Accenture",
-                        "myGwork - LGBTQ+ Business Community", "SkillFied Mentor", "AlgoSec", "NA",
-                        "Zetheta Algorithms Private Limited", "Outscal Gaming", "turning", "Internkaksha IT Solutions",
-                        "Truelancer.com", "Unified Mentor", "Unified Mentor Private Limited", "Uplers", "MedTourEasy",
-                        "Aadhvik Technologies", "Buddha Education Association Incorporation", "pawz", "MentorBoxx",
-                        "Coding Junior", "Vicharak Computers LLP", "Accenture", "Bajaj Finserv Ltd.", "Jio",
-                        "Leading IT Company", "Large-Sized Firm in IT Services Sector", "Leading MNC Client",
-                        "Nexpro247", "O A Compserve", "Rakesh Kumar", "MNC Group", "Accenture in India",
-                        "Divya Placement Consultants", "EY", "TECHPLEMENT", "The BigCjobs.com", "Workassist",
-                        "Refonte Learning", "Skill Secure AI", "Traders Training Academy"]
+FRAUD_COMPANIES_LIST = os.getenv("FRAUD_COMPANIES_LIST").split(",")
 
-SKIP_ROLE_NAMES = ["Azure", "Business Development", "SALES", "Campus Ambassador", "Data Analytics", "Data Engineer",
-                   "Data Scientist", "Devops", "Data Analyst", "Digital Marketing", "Operations", "Embedded Engineer",
-                   "Flutter", "Human Resources", "iOS Developer", "WordPress", "Sales Executive", "Sales Intern", "SEO",
-                   "Shopify", "Test Engineer", "Volunteer Internship", "Product Analyst", "Product manager", "Research",
-                   "Cybersecurity", "Business Analyst", "Electrical Engineer", "SDET", "Word Press", "L2 Support",
-                   "L1 Support", "L3 Support", "Apprentice", "Marketing Intern", "Marketing", "React Native",
-                   "Graphic Design", "Graphic Designer", "Placement Coordinator", "Blockchain", "Project Engineer",
-                   "Product Analyst", "Mechanical", "AWS", "Service Engineer", "Site Engineer"]
+SKIP_ROLE_NAMES = os.getenv("SKIP_ROLES").split(",")
 
 DEFAULT_MAX_PAGES = 10
 WEB_APP_URL="https://script.google.com/macros/s/AKfycbw_G1iVzFqdGNcaeTIg59uPhUPerf5m0bawyBmjEW51mymYoP1V6LNfCLNFRy6L5qQhXA/exec"
@@ -445,7 +427,7 @@ def main():
     password = os.getenv("LINKEDIN_PASSWORD")
     keyword = os.getenv("JOB_KEYWORD", "Data Analyst")
     output_dir = os.getenv("OUTPUT_DIR", r"C:\Users\linus\Downloads\LinkedIN")
-
+    WEB_APP_URL = os.getenv("WEB_APP_URL")
     if not username or not password:
         raise ValueError("Missing LinkedIn credentials in environment variables.")
 
